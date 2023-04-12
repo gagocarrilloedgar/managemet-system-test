@@ -11,9 +11,6 @@ export interface CreateTransactionRequest {
 export const createTransaction =
   (transactionRepository: TransactionReposity) =>
   async (transactionRequest: CreateTransactionRequest) => {
-    if (transactionRequest.amount < 0)
-      throw new Error("Amount cannot be negative");
-
     if (!validateUuid(transactionRequest.account_id))
       throw new Error("Invalid account id");
 

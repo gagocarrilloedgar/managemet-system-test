@@ -14,19 +14,6 @@ const mockTransactionRepository: TransactionReposity = {
 
 // Define test cases for the createTransaction function
 describe("createTransaction", () => {
-  test("should throw an error if the amount is negative", async () => {
-    // Arrange
-    const transactionRequest: CreateTransactionRequest = {
-      account_id: uuid(),
-      amount: -100
-    };
-
-    // Act & Assert
-    await expect(
-      createTransaction(mockTransactionRepository)(transactionRequest)
-    ).rejects.toThrow("Amount cannot be negative");
-  });
-
   test("should throw an error if the account_id is invalid", async () => {
     // Arrange
     const transactionRequest: CreateTransactionRequest = {
