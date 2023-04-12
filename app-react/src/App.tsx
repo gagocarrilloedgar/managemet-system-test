@@ -1,25 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ApiTransactionRepository } from "./modules/transactions/infrastructure/ApiTransactionRepository";
+import { Layout } from "./sections/shared";
+import { TransactionContextProvider } from "./sections/transactions/TransactionsContext";
+import { TransactionsLayout } from "./sections/transactions/TransactionsLayou";
 
 function App() {
+  const transactionRepository = ApiTransactionRepository();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TransactionContextProvider repository={transactionRepository}>
+      <Layout>
+        <TransactionsLayout />
+      </Layout>
+    </TransactionContextProvider>
   );
 }
 
