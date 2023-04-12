@@ -1,25 +1,14 @@
 import { Request, Response } from "express";
 
-interface TransactionResponse {
-  transaction_id: string;
-  account_id: string;
-  amount: number;
-  created_at: Date;
-}
+import httpStatus from "http-status";
 
-type GetTransactionsResponse = TransactionResponse[];
+import { getTransactionByList } from "../application/getTransactionList";
+import { TransactionReposity } from "../domain/TransactionRepository";
 
-export const getTransactionsController = async (
-  req: Request,
-  res: Response
-) => {
-  // Here something happens
-  res.status(201).json([
-    {
-      transaction_id: "123",
-      account_id: "123",
-      amount: 123,
-      created_at: new Date()
-    }
-  ] as GetTransactionsResponse);
-};
+export const getTransactionsController =
+  (transactionRepository: TransactionReposity) =>
+  async (_req: Request, res: Response) => {
+    const transactions = await getTransactionByList(transactionRepository)();
+
+    res.status(httpStatus.OK).json(transactions);
+  };
