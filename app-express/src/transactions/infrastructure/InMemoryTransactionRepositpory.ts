@@ -5,8 +5,9 @@ import { Transaction } from "../domain/Transation";
 export const InMemoryTransactionRepository = (): TransactionReposity => {
   const transactions: Transaction[] = [];
 
-  const create = async (transaction: Transaction): Promise<void> => {
+  const create = async (transaction: Transaction): Promise<Transaction> => {
     transactions.push(transaction);
+    return Promise.resolve(transaction);
   };
 
   const searchById = async (

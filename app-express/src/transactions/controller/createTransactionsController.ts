@@ -13,7 +13,7 @@ export const createTransactionsController =
     const { account_id, amount } = req.body as CreateTransactionRequest;
 
     // Here something happens
-    await createTransaction(transactionRepository)({
+    const createdTransaction = await createTransaction(transactionRepository)({
       account_id,
       amount
     });
@@ -26,4 +26,6 @@ export const createTransactionsController =
         amount
       }
     });
+
+    res.status(201).send({ ...createdTransaction });
   };

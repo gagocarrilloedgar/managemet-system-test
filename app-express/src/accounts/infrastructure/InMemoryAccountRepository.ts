@@ -1,8 +1,10 @@
 import { Account } from "../domain/Account";
 import { AccountRepository } from "../domain/AccountRepository";
 
-export const InMemoryAccountRepository = (): AccountRepository => {
-  const accounts: Account[] = [];
+export const InMemoryAccountRepository = (
+  initAccounts?: Account[]
+): AccountRepository => {
+  const accounts: Account[] = initAccounts ?? [];
 
   return {
     searchById: async (account_id: string) => {

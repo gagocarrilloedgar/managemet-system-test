@@ -14,7 +14,7 @@ export const createTransaction =
     if (!validateUuid(transactionRequest.account_id))
       throw new Error("Invalid account id");
 
-    await transactionRepository.create({
+    return await transactionRepository.create({
       transaction_id: uuid(),
       account_id: transactionRequest.account_id,
       amount: transactionRequest.amount,

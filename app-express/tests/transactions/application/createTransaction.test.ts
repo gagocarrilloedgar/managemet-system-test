@@ -1,16 +1,12 @@
 import { uuid } from "../../../src/shared/uuid";
 import {
-    CreateTransactionRequest,
-    createTransaction
+  CreateTransactionRequest,
+  createTransaction
 } from "../../../src/transactions/application/createTransaction";
-import { TransactionReposity } from "../../../src/transactions/domain/TransactionRepository";
+
+import { mockTransactionRepository } from "./mockTransactionRepository";
 
 // Mock the TransactionRepository interface
-const mockTransactionRepository: TransactionReposity = {
-  create: jest.fn(),
-  searchById: jest.fn(),
-  searchAll: jest.fn()
-};
 
 // Define test cases for the createTransaction function
 describe("createTransaction", () => {
