@@ -12,7 +12,7 @@ interface CreateTransactionResponse {
   created_at: Date;
 }
 
-export const createTransactionController = async (
+export const createTransactionsController = async (
   req: Request,
   res: Response
 ) => {

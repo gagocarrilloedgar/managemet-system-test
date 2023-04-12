@@ -9,7 +9,7 @@ interface TransactionResponse {
 
 type GetTransactionsResponse = TransactionResponse[];
 
-export const createTransactionController = async (
+export const getTransactionsController = async (
   req: Request,
   res: Response
 ) => {
