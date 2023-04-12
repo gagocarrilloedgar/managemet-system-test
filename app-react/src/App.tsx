@@ -5,6 +5,7 @@ import { TransactionsLayout } from "./sections/transactions/TransactionsLayou";
 
 function App() {
   const transactionRepository = ApiTransactionRepository();
+  
   return (
     <TransactionContextProvider repository={transactionRepository}>
       <Layout>
