@@ -1,7 +1,9 @@
+import { uuid } from "../../shared/uuid";
+
 import { TransactionReposity } from "../domain/TransactionRepository";
 import { validateUuid } from "../domain/validateUuid";
 
-interface CreateTransactionRequest {
+export interface CreateTransactionRequest {
   account_id: string;
   amount: number;
 }
@@ -12,7 +14,7 @@ export const createTransaction =
     if (transactionRequest.amount < 0)
       throw new Error("Amount cannot be negative");
 
-    if (validateUuid(transactionRequest.account_id))
+    if (!validateUuid(transactionRequest.account_id))
       throw new Error("Invalid account id");
 
     await transactionRepository.create({
