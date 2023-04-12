@@ -1,4 +1,6 @@
-import { Maybe, Transaction } from "./Transation";
+import { Maybe } from "../../shared/types";
+
+import { Transaction } from "./Transation";
 
 export interface TransactionReposity {
   create(transaction: Transaction): Promise<void>;

@@ -1,5 +1,6 @@
+import { Maybe } from "../../shared/types";
 import { TransactionReposity } from "../domain/TransactionRepository";
-import { Maybe, Transaction } from "../domain/Transation";
+import { Transaction } from "../domain/Transation";
 
 export const InMemoryTransactionRepository = (): TransactionReposity => {
   const transactions: Transaction[] = [];
