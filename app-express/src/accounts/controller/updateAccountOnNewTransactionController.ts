@@ -9,7 +9,7 @@ export const updateAccountOnNewTransactionController = (
   const eventName = "transactions.created";
 
   const callback = async (payload: unknown) => {
-    const transaction = payload as unknown as AccountTransaction;
+    const transaction = payload as AccountTransaction;
     await udpateAccountOnTransactionCreated(accountRepository)(transaction);
   };
 

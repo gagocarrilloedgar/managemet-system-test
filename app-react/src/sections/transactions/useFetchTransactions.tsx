@@ -8,7 +8,7 @@ export const useFetchTransactions = () => {
   const setFalseAfterTimeout = () => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1000);
   };
 
   React.useEffect(() => {

@@ -30,7 +30,7 @@ export const TransactionContextProvider = ({
   const create = async (transaction: NewTransaction) => {
     const newTransaction = await createTransaction(repository)(transaction);
 
-    setTransactions([...transactions, newTransaction]);
+    setTransactions([...transactions, newTransaction].reverse());
   };
 
   const loadTransactions = React.useCallback(async () => {

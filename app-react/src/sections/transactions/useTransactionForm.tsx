@@ -20,7 +20,7 @@ export function useTransactionForm(): {
   const stopLoadinAfterTimeout = () => {
     setTimeout(() => {
       setFormStatus(FormStatus.Initial);
-    }, 2000);
+    }, 1000);
   };
 
   function submitForm(formData: { accountId: string; amount: number }) {

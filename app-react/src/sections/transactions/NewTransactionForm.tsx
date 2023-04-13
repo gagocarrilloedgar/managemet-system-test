@@ -10,11 +10,14 @@ import { FormStatus, useTransactionForm } from "./useTransactionForm";
 
 const initialState = {
   accountId: "",
-  amount: 0
+  amount: null
 };
 
 export const NewTransactionForm = () => {
-  const { formData, updateForm, resetForm } = useFormData(initialState);
+  const { formData, updateForm, resetForm } = useFormData<{
+    accountId: string;
+    amount: null | number;
+  }>(initialState);
   const { formStatus, submitForm, resetFormStatus } = useTransactionForm();
   const [error, setError] = React.useState("");
 
@@ -26,7 +29,11 @@ export const NewTransactionForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitForm(formData);
+    submitForm({
+      accountId: formData.accountId,
+      amount: formData.amount ?? 0
+    });
+    resetForm();
   };
 
   switch (formStatus) {
@@ -42,7 +49,7 @@ export const NewTransactionForm = () => {
           <TextField
             fullWidth
             label="Account ID"
-            datatype="account-id"
+            data-type="account-id"
             sx={{ marginBottom: "10px" }}
             value={formData.accountId}
             error={Boolean(formData.accountId && !!error)}
@@ -54,16 +61,16 @@ export const NewTransactionForm = () => {
           <TextField
             fullWidth
             label="Amount"
-            datatype="amount"
+            data-type="amount"
             type="number"
             value={formData.amount}
             onChange={(event) => {
-              updateForm({ amount: Number(event.target.value) });
+              updateForm({ amount: Number(event.target.value) ?? 0 });
             }}
           />
           <input
             type="submit"
-            datatype="transaction-type"
+            data-type="transaction-submit"
             style={{
               width: "150px",
               backgroundColor: "transparent",
