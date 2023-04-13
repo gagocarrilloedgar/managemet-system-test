@@ -1,7 +1,7 @@
 import { TransactionRepository } from "../domain/TransactionRepository";
 import {
-    NewTransaction,
-    ensureValidTransactionAccount
+  NewTransaction,
+  ensureValidTransactionAccount
 } from "../domain/Transactions";
 
 export const createTransaction =

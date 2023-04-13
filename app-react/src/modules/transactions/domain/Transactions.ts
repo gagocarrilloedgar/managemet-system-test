@@ -13,9 +13,7 @@ export interface TransactionAccount {
 export type NewTransaction = Omit<Transaction, "transaction_id" | "created_at">;
 
 export const ensureValidTransactionAccount = (account_id: string) => {
-  if (!validateUuid(account_id)) {
-    throw new Error("Invalid account id");
-  }
+  if (!validateUuid(account_id)) throw new Error("Invalid account id");
 };
 
 export function validateUuid(uuid: string): boolean {
