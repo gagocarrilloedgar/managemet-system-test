@@ -1,8 +1,10 @@
 import React from "react";
 
-import { TextField } from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 import { validateUuid } from "../../modules/transactions/domain/Transactions";
+import { AlertMessageWithButton } from "../shared/AlertMessageWithButton";
+
 import { useFormData } from "./useFormData";
 import { FormStatus, useTransactionForm } from "./useTransactionForm";
 
@@ -44,7 +46,7 @@ export const NewTransactionForm = () => {
             sx={{ marginBottom: "10px" }}
             value={formData.accountId}
             error={Boolean(formData.accountId && !!error)}
-            helperText={formData.accountId && error}
+            helperText={formData.accountId ? error : ""}
             onChange={(event) => {
               updateForm({ accountId: event.target.value });
             }}
@@ -53,6 +55,7 @@ export const NewTransactionForm = () => {
             fullWidth
             label="Amount"
             datatype="amount"
+            type="number"
             value={formData.amount}
             onChange={(event) => {
               updateForm({ amount: Number(event.target.value) });
@@ -80,19 +83,21 @@ export const NewTransactionForm = () => {
 
 function SuccessNotification({ resetForm }: { resetForm: () => void }) {
   return (
-    <section>
-      <h2>🚀 Transsaction created</h2>
-      <button onClick={resetForm}>Create a new Transaction</button>
-    </section>
+    <AlertMessageWithButton
+      resetForm={resetForm}
+      title="🎉 Transaction created!"
+      buttonActionText="Create a new Transaction"
+    />
   );
 }
 
 function ErrorNotification({ resetForm }: { resetForm: () => void }) {
   return (
-    <section role="alert" className="error">
-      <h2>🌋 You have an error in your form</h2>
-      <button onClick={resetForm}>Ok, let me try again</button>
-    </section>
+    <AlertMessageWithButton
+      resetForm={resetForm}
+      title="😱 Something went wrong"
+      buttonActionText="Ok, let me try again"
+    />
   );
 }
 
