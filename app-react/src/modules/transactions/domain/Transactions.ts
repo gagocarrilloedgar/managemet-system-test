@@ -5,10 +5,12 @@ export interface Transaction {
   created_at: Date;
 }
 
-export type NewTransaction = Omit<
-  Transaction,
-  "transaction_id" | "created_at"
->;
+export interface TransactionAccount {
+  account_id: string;
+  balance: number;
+}
+
+export type NewTransaction = Omit<Transaction, "transaction_id" | "created_at">;
 
 export const ensureValidTransactionAccount = (account_id: string) => {
   if (!validateUuid(account_id)) {

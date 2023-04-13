@@ -2,5 +2,6 @@ import { TransactionRepository } from "../domain/TransactionRepository";
 
 export const getAllTransactions =
   (repository: TransactionRepository) => async () => {
-    return await repository.searchAll();
+    const transactions = await repository.searchAll();
+    return transactions.reverse();
   };

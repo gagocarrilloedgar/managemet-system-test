@@ -13,6 +13,12 @@ export const TransactionCard = ({
   balance,
   isLast
 }: TransactionCardProps) => {
+  const title = `Transferred ${amount}$ ${
+    isLast ? "from" : "to"
+  } account ${accountId}`;
+
+  const subHeader = isLast && `The current balance is ${balance}$`;
+
   return (
     <Card
       data-type="transaction-card"
@@ -25,10 +31,7 @@ export const TransactionCard = ({
         data-amount={amount}
         data-balance={balance}
       >
-        <CardHeader
-          title={`Transferred ${amount}$ from account ${accountId}`}
-          subheader={isLast && `The current balance is ${balance}$`}
-        />
+        <CardHeader title={title} subheader={subHeader} />
       </div>
     </Card>
   );

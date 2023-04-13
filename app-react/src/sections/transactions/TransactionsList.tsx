@@ -1,15 +1,16 @@
-import { Transaction } from "../../modules/transactions/domain/Transactions";
 import { TransactionCard } from "./TransactionCard";
+import { useFetchTransactions } from "./useFetchTransactions";
 
-interface TransactionsListProps {
-  transactions: Partial<Transaction>[];
-  balance: number;
-}
-export const TransactionsList = ({
-  transactions,
-  balance
-}: TransactionsListProps) => {
-  if (transactions.length === 0) {
+export const TransactionsList = () => {
+  const { isLoading, transactions, accountBalance } = useFetchTransactions();
+
+  // This can be improved by adding a custom component for loading state
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  // This can be improved by adding a custom component for empty state
+  if (!isLoading && transactions.length === 0) {
     return <div>No transactions</div>;
   }
 
@@ -25,7 +26,7 @@ export const TransactionsList = ({
           key={transaction.transaction_id}
           accountId={transaction.account_id || ""}
           amount={transaction.amount || 0}
-          balance={balance}
+          balance={accountBalance}
           isLast={index === 0}
         />
       ))}
