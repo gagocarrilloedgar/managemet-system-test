@@ -4,8 +4,8 @@ import { createTransaction } from "../../modules/transactions/application/create
 import { getAllTransactions } from "../../modules/transactions/application/getAllTransactions";
 import { TransactionRepository } from "../../modules/transactions/domain/TransactionRepository";
 import {
-    NewTransaction,
-    Transaction
+  NewTransaction,
+  Transaction
 } from "../../modules/transactions/domain/Transactions";
 
 export interface ContextState {

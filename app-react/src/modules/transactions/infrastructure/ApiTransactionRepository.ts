@@ -23,5 +23,7 @@ const create = async (transaction: NewTransaction): Promise<Transaction> => {
 };
 
 const searchAll = async (): Promise<Transaction[]> => {
-  return fetch(transactionsUrl).then((response) => response.json());
+  const response = await fetch(transactionsUrl);
+  console.log({ response });
+  return response.json();
 };
