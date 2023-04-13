@@ -1,3 +1,4 @@
+import AppError from "../../shared/AppError";
 import { Account } from "../domain/Account";
 import { AccountRepository } from "../domain/AccountRepository";
 
@@ -15,7 +16,7 @@ export const InMemoryAccountRepository = (
         (account) => account.account_id === updatedAccount.account_id
       );
 
-      if (index === -1) throw new Error("Account not found");
+      if (index === -1) throw new AppError("Account not found", 404);
 
       accounts[index].balance = updatedAccount.balance;
     }

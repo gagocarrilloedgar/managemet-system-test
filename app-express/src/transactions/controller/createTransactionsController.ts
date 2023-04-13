@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 
+import AppError from "../../shared/AppError";
 import { publishDomainEvent } from "../../shared/domainEvent";
 import {
   CreateTransactionRequest,
@@ -12,6 +13,11 @@ export const createTransactionsController =
   async (req: Request, res: Response) => {
     const { account_id, amount } = req.body as CreateTransactionRequest;
 
+    if (!account_id || !amount)
+      throw new AppError(
+        "	Mandatory body parameters missing or have incorrect type",
+        400
+      );
     // Here something happens
     const createdTransaction = await createTransaction(transactionRepository)({
       account_id,

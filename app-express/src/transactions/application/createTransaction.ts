@@ -1,3 +1,4 @@
+import AppError from "../../shared/AppError";
 import { uuid } from "../../shared/uuid";
 
 import { TransactionReposity } from "../domain/TransactionRepository";
@@ -12,7 +13,7 @@ export const createTransaction =
   (transactionRepository: TransactionReposity) =>
   async (transactionRequest: CreateTransactionRequest) => {
     if (!validateUuid(transactionRequest.account_id))
-      throw new Error("Invalid account id");
+      throw new AppError("Specified content type not allowed.", 415);
 
     return await transactionRepository.create({
       transaction_id: uuid(),
