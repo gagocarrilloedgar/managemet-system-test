@@ -19,6 +19,9 @@ export const InMemoryAccountRepository = (
       if (index === -1) throw new AppError("Account not found", 404);
 
       accounts[index].balance = updatedAccount.balance;
+    },
+    create: async (account: Account) => {
+      accounts.push(account);
     }
   };
 };

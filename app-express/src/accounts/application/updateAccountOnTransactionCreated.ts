@@ -1,4 +1,3 @@
-import AppError from "../../shared/AppError";
 import { AccountTransaction } from "../domain/Account";
 import { AccountRepository } from "../domain/AccountRepository";
 
@@ -7,7 +6,11 @@ export const udpateAccountOnTransactionCreated =
   async (transaction: AccountTransaction) => {
     const account = await accountRepository.searchById(transaction.account_id);
 
-    if (!account) throw new AppError("Account not found", 404);
+    if (!account)
+      return await accountRepository.create({
+        account_id: transaction.account_id,
+        balance: transaction.amount
+      });
 
     const udpatedAccount = {
       ...account,

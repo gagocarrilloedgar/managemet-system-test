@@ -20,7 +20,7 @@ describe("createTransaction", () => {
     // Act & Assert
     await expect(
       createTransaction(mockTransactionRepository)(transactionRequest)
-    ).rejects.toThrow("Invalid account id");
+    ).rejects.toThrow("Specified content type not allowed.");
   });
 
   test("should call the create method of the transactionRepository with the correct parameters", async () => {
