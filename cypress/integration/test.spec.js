@@ -140,6 +140,8 @@ describe('Transaction Management Frontend - Level 3', () => {
       `[data-type=transaction][data-account-id=${accountId}][data-amount=${amount}][data-balance=${balance}]`
     ).should('exist')
 
+    cy.wait(2000)
+
     // submit a new transaction to the same account and verify the balance
     const newAmount = 7
     const newBalance = 37
@@ -150,6 +152,7 @@ describe('Transaction Management Frontend - Level 3', () => {
       `[data-type=transaction][data-account-id=${accountId}][data-amount=${newAmount}][data-balance=${newBalance}]`
     ).should('exist')
 
+    cy.wait(2000)
     // submit another transaction & verify the position on the list
     const anotherAccountId = uuid()
     const anotherAmount = 7
@@ -161,6 +164,7 @@ describe('Transaction Management Frontend - Level 3', () => {
       `[data-type=transaction][data-account-id=${anotherAccountId}][data-amount=${anotherAmount}][data-balance=${anotherBalance}]`
     ).should('exist')
 
+    cy.wait(2000)
     // submit a transaction with a negative amount & verify the position on the list
     const negativeAmount = -5
     const negativeBalance = 2
