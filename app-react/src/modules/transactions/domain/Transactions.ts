@@ -16,8 +16,8 @@ export const ensureValidTransactionAccount = (account_id: string) => {
   if (!validateUuid(account_id)) throw new Error("Invalid account id");
 };
 
-export function validateUuid(uuid: string): boolean {
+export const validateUuid = (uuid: string): boolean => {
   const uuidRegex =
     /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
   return uuidRegex.test(uuid);
-}
+};

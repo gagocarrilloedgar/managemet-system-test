@@ -88,7 +88,7 @@ export const NewTransactionForm = () => {
   }
 };
 
-function SuccessNotification({ resetForm }: { resetForm: () => void }) {
+const SuccessNotification = ({ resetForm }: { resetForm: () => void }) => {
   return (
     <AlertMessageWithButton
       resetForm={resetForm}
@@ -96,9 +96,9 @@ function SuccessNotification({ resetForm }: { resetForm: () => void }) {
       buttonActionText="Create a new Transaction"
     />
   );
-}
+};
 
-function ErrorNotification({ resetForm }: { resetForm: () => void }) {
+const ErrorNotification = ({ resetForm }: { resetForm: () => void }) => {
   return (
     <AlertMessageWithButton
       resetForm={resetForm}
@@ -106,8 +106,8 @@ function ErrorNotification({ resetForm }: { resetForm: () => void }) {
       buttonActionText="Ok, let me try again"
     />
   );
-}
+};
 
-function assertUnreachable(_x: never): never {
+export const assertUnreachable = (_x: never): never => {
   throw new Error("Didn't expect to get here");
-}
+};

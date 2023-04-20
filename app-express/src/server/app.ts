@@ -16,15 +16,19 @@ app.use(cors());
 const router = Router();
 app.use(router);
 
+const does_method_exist = (
+  _req: Request,
+  _res: Response,
+  next: NextFunction
+) => {
+  next();
+};
+
 router.use("/api", does_method_exist, apiEndpoints(router));
 
 router.get("*", (_req: Request, res: Response) => {
   res.status(404).send("404 Not Found");
 });
-
-function does_method_exist(_req: Request, _res: Response, next: NextFunction) {
-  next();
-}
 
 // Convert error to ApiError, if needed
 router.use(errorConverter);

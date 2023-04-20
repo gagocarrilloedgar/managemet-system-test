@@ -8,11 +8,11 @@ export const enum FormStatus {
   Initial
 }
 
-export function useTransactionForm(): {
+export const useTransactionForm = (): {
   formStatus: FormStatus;
   submitForm: (formData: { accountId: string; amount: number }) => void;
   resetFormStatus: () => void;
-} {
+} => {
   const [formStatus, setFormStatus] = useState(FormStatus.Initial);
 
   const { createTransaction } = useTransactionsContext();
@@ -23,7 +23,7 @@ export function useTransactionForm(): {
     }, 1000);
   };
 
-  function submitForm(formData: { accountId: string; amount: number }) {
+  const submitForm = (formData: { accountId: string; amount: number }) => {
     setFormStatus(FormStatus.Loading);
     stopLoadinAfterTimeout();
     createTransaction({
@@ -36,15 +36,15 @@ export function useTransactionForm(): {
       .catch(() => {
         setFormStatus(FormStatus.Error);
       });
-  }
+  };
 
-  function resetFormStatus() {
+  const resetFormStatus = () => {
     setFormStatus(FormStatus.Initial);
-  }
+  };
 
   return {
     formStatus,
     submitForm,
     resetFormStatus
   };
-}
+};

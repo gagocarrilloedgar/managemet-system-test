@@ -7,13 +7,13 @@ import {
 
 import config from "../../../shared/config";
 
-export function ApiTransactionRepository(): TransactionRepository {
+export const ApiTransactionRepository = (): TransactionRepository => {
   return {
     create,
     searchAll,
     getAccountById
   };
-}
+};
 
 const transactionsUrl = `${config.apiUrl}/transactions`;
 

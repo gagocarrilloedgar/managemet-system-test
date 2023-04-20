@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 
-export function AlertMessageWithButton({
+export const AlertMessageWithButton = ({
   resetForm,
   title,
   buttonActionText
@@ -8,7 +8,7 @@ export function AlertMessageWithButton({
   resetForm: () => void;
   title: string;
   buttonActionText: string;
-}>) {
+}>) => {
   return (
     <section role="alert">
       <Typography variant="h2">😱 {title} </Typography>
@@ -17,4 +17,4 @@ export function AlertMessageWithButton({
       </Button>
     </section>
   );
-}
+};
