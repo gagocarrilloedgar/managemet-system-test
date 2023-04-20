@@ -1,10 +1,15 @@
-import express, { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 
-const router = express.Router();
+import { accountRoutes } from "../accounts/routes";
+import { transactionsRoutes } from "../transactions/routes";
 
-router.get("/ping", (req: Request, res: Response) => {
-  res.send("pong")
-})
+export const apiEndpoints = (router: Router) => {
+  router.get("/ping", (_req: Request, res: Response) => {
+    res.send("pong");
+  });
 
+  transactionsRoutes(router);
+  accountRoutes(router);
 
-export default router;
+  return router;
+};
